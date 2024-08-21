@@ -11,15 +11,18 @@ input.addEventListener('keypress', (e) => {
 })
 
 
-button.addEventListener('click', principal)
+button.addEventListener('click', principal);
 
   function principal() {
   
   xhr.open('GET', 'https://viacep.com.br/ws/' + input.value + '/json', true);
   
   xhr.onload = () => {
-    if(xhr.status >= 200 && xhr.status < 300) {
-      const data = JSON.parse(xhr.responseText);
+    const data = JSON.parse(xhr.responseText);
+    if(data.erro){
+     resultado.innerHTML = 'CEP NÃO ENCONTRADO'; return
+    }
+    else if(xhr.status >= 200 && xhr.status < 300) {
       console.log('Dados recebidos: ', data);
       resultado.innerHTML = `
                             <p> Cep: ${data.cep}</p>
@@ -29,20 +32,20 @@ button.addEventListener('click', principal)
                             <p> Localidade: ${data.localidade}</p>
                             <p> Estado: ${data.uf}</p>
                             `
-    }
+                          }
   }
   
   const letrasOuSimbolos = /[^0-9]/;
 
   xhr.onerror = () => {
     if (!input.value) {
-      return alert('CAMPO VAZIO') 
+      return alert('CAMPO VAZIO'); 
     }
     else if (letrasOuSimbolos.test(input.value)) {
       return alert('POR FAVOR DIGITE APENAS NUMEROS');
     }
     else if (input.value != 8) {
-      return alert('O CEP DEVE CONTER 8 DIGITOS. POR FAVOR, VERIFIQUE OS NUMEROS DO CEP INFORMADO ')
+      return alert('O CEP DEVE CONTER 8 DIGITOS. POR FAVOR, VERIFIQUE OS NUMEROS DO CEP INFORMADO ');
     }
     resultado.innerHTML= 'CEP ERRADO, VERIFIQUE OS NUMEROS INFORMADOS';
   }
