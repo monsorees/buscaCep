@@ -6,7 +6,7 @@
 
 body {
   background-image: url('../assets/background-brasil.jpg');
-  background-position: center;
+  background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -68,4 +68,29 @@ body {
   color:rgb(224, 222, 222);
   border-radius: 10px;
   text-shadow: 2px 2px 2px rgb(0, 0, 0);
+}
+
+@media (max-width: 600px) {
+  .content {
+    min-height: 400px;
+  }
+  .input {
+    padding: 10px;
+  }
+}
+@media (min-width: 600px) and (max-width: 800px) {
+  .content {
+    min-height: 400px;
+  }
+  .input {
+    padding: 10px;
+  }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .content {
+    min-height: 300px;
+  }
+  .input {
+    padding: 10px;
+  }
 }
