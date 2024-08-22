@@ -24,15 +24,11 @@ button.addEventListener('click', principal);
     }
     else if(xhr.status >= 200 && xhr.status < 300) {
       console.log('Dados recebidos: ', data);
-      resultado.innerHTML = `
-                            <p> Cep: ${data.cep}</p>
-                            <p> Bairro: ${data.bairro}</p>
-                            <p> Rua: ${data.logradouro}</p>
-                            <p> Complemento: ${data.complemento}</p>
-                            <p> Localidade: ${data.localidade}</p>
-                            <p> Estado: ${data.uf}</p>
-                            `
-                          }
+
+      for(let [chave, valor] of Object.entries(data)) {
+        resultado.innerHTML += `<p>${chave}: ${valor}</p>`
+      }
+    }
   }
   
   const letrasOuSimbolos = /[^0-9]/;
